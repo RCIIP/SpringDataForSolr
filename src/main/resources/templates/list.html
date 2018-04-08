@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>搜索页</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/assets/css/list.css}">
+</head>
+<body>
+<div th:replace="fragement/header :: header">&nbsp;</div>
+<div class="container content">
+  <div th:if="${#lists.size(page.content)} == 0">
+    <p>Sorry, no match found for <strong>'<span th:text="${query}"></span>'</strong>.</p>
+  </div>
+  <div class="row item" th:each="prod,iterStat : ${page.content}">
+    <a th:href="@{/showOne?id=} +   ${prod.id}" class="text-info" th:text="${prod.name}" style="text-decoration: underline"></a>
+    <p th:if="${prod.features != null && #lists.size(prod.features) > 0}" th:text="${prod.features[0]}"></p>
+    <p th:if="${prod.price} > 0">Price:<span th:text="${prod.price}"></span></p>
+    <span th:each="highlight,iterStat : ${page.getHighlights(prod)}" th:utext="${highlight.getSnipplets()}"></span>
+  </div>
+  <!-- 分页 -->
+  <p th:text="${page}"></p>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <!-- 上一页 -->
+      <li th:if="${page.hasPrevious()}">
+        <a th:href="@{/search(q=*{query}?:'', page=${page.number-1})}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li th:if="${page.hasPrevious()} == false" class="disabled">
+        <span>
+          <span aria-hidden="true">&laquo;</span>
+        </span>
+      </li>
+      <!-- 页码编号 -->
+      <li th:each="index : ${#numbers.sequence(0, page.getTotalPages()>0?page.getTotalPages()-1:0)}">
+        <a th:href="@{/search(q=*{query}?:'', page=${index})}" th:text="${index}+1"></a>
+      </li>
+      <!-- 下一页 -->
+      <li th:if="${page.hasNext()}">
+        <a th:href="@{/search(q=*{query}?:'', page=${page.number+1})}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li th:if="${page.hasNext()} == false" class="disabled">
+        <span>
+          <span aria-hidden="true">&raquo;</span>
+        </span>
+      </li>
+    </ul>
+  </nav><!-- 分页结束 -->
+</div><!-- end of container -->
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/css/list.css}">
+</head>
+<body>
+    <div th:replace="fragement/header :: header"></div>
+    <div class="container content">
+        <div class="row">
+            <a href="javascript:history.back()">Back to List</a>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading"><p th:text="${product}"></p></div>
+                <div class="panel-body" th:if="${#lists.size(product.features)} > 0">
+                    <p th:each="item : ${ product.features}"><span th:text="${item}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" th:fragment="header">
+    <div class="container" style="margin-left: 10px;">
+        <div class="col-xs-1 col-md-1">
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <div class="col-xs-5 col-md-5 input_top">
+            <form class="input-group" th:action="@{/search}">
+                <input name="q" type="text" class="form-control" placeholder="Search for..." th:value="${query}">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+            </form><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+</nav>
+</body>
+</html>

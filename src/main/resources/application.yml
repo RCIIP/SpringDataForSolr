@@ -1,0 +1,17 @@
+# spring mvcserver:
+server:
+  port: 81
+
+spring:
+  data:
+    # solr
+    solr:
+      host: http://localhost:8983/solr
+      repositories:
+        enabled: true
+  # thymeleaf
+  thymeleaf:
+      cache: false
+      mode: LEGACYHTML5
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>搜索页</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/assets/css/search.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="container" style="margin-left: 10px;">
+      <div class="col-xs-1 col-md-1">
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="starter-template">
+    <h1>Get your Search</h1>
+    <div class="col-md-6 col-md-offset-3 my_input">
+      <form class="input-group input-group-lg" th:action="@{/search}">
+        <input name="q" type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Go!</button>
+            </span>
+      </form><!-- /input-group -->
+    </div>
+  </div>
+</div>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
